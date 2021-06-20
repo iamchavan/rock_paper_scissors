@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            const a = ["rock","paper","scissors"];
+            function computerPlay()
+            {
+                let num=Math.floor(Math.random() * 3);
+                return a[num];
+            }
+            function playRound(playerSelection, computerSelection)
+            {
+                playerSelection=playerSelection.toLowerCase();
+                let p,c;
+                for(let i=0;i<3;i++)
+                {
+                    if(playerSelection==a[i])p=i;
+                    if(computerSelection==a[i])c=i;
+                }
+                let winner;
+                if(Math.abs(p-c)==1)
+                {
+                    if(p>c)
+                    {
+                        winner=1;
+                    }
+                    else winner=0;
+                }
+                else if(Math.abs(p-c)==0) winner = -1;
+                else 
+                {
+                    if(p>c)winner=0;
+                    else winner = 1;
+                }
+                let ret;
+                if(winner==1)
+                {
+                    ret = "You Win! "+a[p] + " beats " + a[c];
+                }
+                else if(winner == -1)
+                {
+                    ret = "Its a Draw! between " + a[p] + " and " + a[c];
+                }
+                else 
+                {
+                    ret = "You "+"Lose! "+a[c] + " beats " + a[p];
+                }
+                return ret;
+            }
+            function game()
+            {
+                for(let i=0;i<5;i++)
+                {
+                    let playerSelection = window.prompt("Enter your selection from Rock, paper, scissors","rock");
+                    console.log(playRound(playerSelection,computerPlay())); 
+                }
+            }
+            game();
+        </script>
+    </body>
+</html>
